@@ -9,4 +9,6 @@ def test_get_engine():
 
     engine = DatabaseConnection.get_engine()
 
-    assert isinstance(engine, Engine)
+    #assert isinstance(engine, Engine)
+    
+    assert False
