@@ -1,5 +1,4 @@
 from src.extract.csv_extractor import CSVExtractor
-from src.extract.csv_extractor import CSVExtractor
 from src.transform.data_normalizer import DataNormalizer
 from src.database.database_connection import DatabaseConnection
 from src.load.database_loader import DatabaseLoader
@@ -18,7 +17,7 @@ def main():
 
     engine = DatabaseConnection.get_engine()
     try:
-        with engine.connect() as conn:
+        with engine.connect():
             print("Conectado com sucesso!")
     except Exception as e:
         print(type(e))
