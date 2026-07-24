@@ -6,74 +6,39 @@ class DataNormalizer:
     def create_customers(self):
 
         return (
-            self.df[
-                [
-                    "Customer ID",
-                    "Customer Name",
-                    "Segment"
-                ]
-            ]
+            self.df[["Customer ID", "Customer Name", "Segment"]]
             .drop_duplicates()
             .reset_index(drop=True)
         )
-
 
     def create_categories(self):
 
-        categories = (
-            self.df[
-                ["Category"]
-            ]
-            .drop_duplicates()
-            .reset_index(drop=True)
-        )
+        categories = self.df[["Category"]].drop_duplicates().reset_index(drop=True)
 
         categories["category_id"] = categories.index + 1
 
         return categories
 
-
     def create_subcategories(self):
 
         return (
-            self.df[
-                [
-                    "Category",
-                    "Sub-Category"
-                ]
-            ]
+            self.df[["Category", "Sub-Category"]]
             .drop_duplicates()
             .reset_index(drop=True)
         )
-
 
     def create_products(self):
 
         return (
-            self.df[
-                [
-                    "Product ID",
-                    "Product Name",
-                    "Sub-Category"
-                ]
-            ]
+            self.df[["Product ID", "Product Name", "Sub-Category"]]
             .drop_duplicates()
             .reset_index(drop=True)
         )
 
-
     def create_locations(self):
 
         locations = (
-            self.df[
-                [
-                    "Country",
-                    "State",
-                    "City",
-                    "Postal Code",
-                    "Region"
-                ]
-            ]
+            self.df[["Country", "State", "City", "Postal Code", "Region"]]
             .drop_duplicates()
             .reset_index(drop=True)
         )
@@ -83,18 +48,11 @@ class DataNormalizer:
         # Adiciona o location_id ao dataframe original
         self.df = self.df.merge(
             locations,
-            on=[
-                "Country",
-                "State",
-                "City",
-                "Postal Code",
-                "Region"
-            ],
-            how="left"
+            on=["Country", "State", "City", "Postal Code", "Region"],
+            how="left",
         )
 
         return locations
-
 
     def create_orders(self):
 
@@ -106,34 +64,20 @@ class DataNormalizer:
                     "Ship Date",
                     "Ship Mode",
                     "Customer ID",
-                    "location_id"
+                    "location_id",
                 ]
             ]
             .drop_duplicates()
             .reset_index(drop=True)
         )
 
-
     def create_order_items(self):
 
-        items = (
-            self.df[
-                [
-                    "Order ID",
-                    "Product ID",
-                    "Sales",
-                    "Quantity",
-                    "Discount",
-                    "Profit"
-                ]
-            ]
-            .copy()
-        )
+        items = self.df[
+            ["Order ID", "Product ID", "Sales", "Quantity", "Discount", "Profit"]
+        ].copy()
 
-        items["item_id"] = range(
-            1,
-            len(items) + 1
-        )
+        items["item_id"] = range(1, len(items) + 1)
 
         return items
 
@@ -154,5 +98,5 @@ class DataNormalizer:
             "products": products,
             "locations": locations,
             "orders": orders,
-            "order_items": order_items
+            "order_items": order_items,
         }

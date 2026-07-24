@@ -1,8 +1,6 @@
 from sqlalchemy.engine import Engine
 
-from src.database.database_connection import (
-    DatabaseConnection
-)
+from src.database.database_connection import DatabaseConnection
 
 
 def test_get_engine():

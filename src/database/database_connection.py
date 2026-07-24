@@ -1,11 +1,5 @@
 from sqlalchemy import create_engine
-from src.config.settings import (
-    DB_HOST,
-    DB_PORT,
-    DB_NAME,
-    DB_USER,
-    DB_PASSWORD
-)
+from src.config.settings import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 
 
 class DatabaseConnection:

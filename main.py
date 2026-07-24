@@ -4,10 +4,10 @@ from src.transform.data_normalizer import DataNormalizer
 from src.database.database_connection import DatabaseConnection
 from src.load.database_loader import DatabaseLoader
 
+
 def main():
     extractor = CSVExtractor(
-        file_path=r"data\raw\Sample - Superstore.csv",
-        encoding="latin-1"
+        file_path=r"data\raw\Sample - Superstore.csv", encoding="latin-1"
     )
     df = extractor.extract()
     print(df.head())
@@ -28,6 +28,7 @@ def main():
 
     for table_name, dataframe in tables.items():
         loader.load(dataframe, table_name)
+
 
 if __name__ == "__main__":
     main()

@@ -4,10 +4,7 @@ from src.transform.data_normalizer import DataNormalizer
 
 def get_normalizer():
 
-    extractor = CSVExtractor(
-        "data/raw/Sample - Superstore.csv",
-        encoding="latin-1"
-    )
+    extractor = CSVExtractor("data/raw/Sample - Superstore.csv", encoding="latin-1")
 
     df = extractor.extract()
 
